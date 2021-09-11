@@ -2,24 +2,27 @@ import React from "react";
 import ReactDOM from "react-dom";
 //import App from "./App";
 
-
-interface Name {
-    firstName: string;
-    lastName: string;
+type NameProps = {
+    name : string
+}
+function Greetings(props : NameProps) : JSX.Element {
+    return <h1>Hello,{props.name}</h1>;
 }
 
-function formatName(user : Name) : string{
-    return user.firstName + " " + user.lastName;
-}
-
-const user : Name = {
-    firstName : "Luna",
-    lastName : "Tsukinashi"
-};
-
-const elm = (
-    <h1>Hello,{formatName(user)}!</h1>
+const elm : JSX.Element = (
+    <Greetings name = "Luna"/>
 );
+
+function tick() : void{
+    const element : JSX.Element = (
+        <h2>It is {new Date().toLocaleTimeString()}.</h2>
+    );
+
+    ReactDOM.render(element,document.getElementById("clock"));
+}
+
+setInterval(tick,1000);
+
 ReactDOM.render(
     elm,
     document.getElementById("root")
